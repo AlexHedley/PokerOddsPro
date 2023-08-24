@@ -77,6 +77,11 @@ class Program
         SetCard(CardSlotTypeEnum.BoardCardSlot, 2, -1, 0, CardNumberEnum.Ten, CardSuitEnum.Spade); // 10♠
         //SetCard(CardSlotTypeEnum.BoardCardSlot, 3, -1, 0, CardNumberEnum., CardSuitEnum.); // 
         //SetCard(CardSlotTypeEnum.BoardCardSlot, 4, -1, 0, CardNumberEnum., CardSuitEnum.); // 
+
+        // Dead Cards
+        // Player 3
+        SetCard(CardSlotTypeEnum.DeadCardSlot, 0, 0, 0, CardNumberEnum.King, CardSuitEnum.Heart); // K♥
+        SetCard(CardSlotTypeEnum.DeadCardSlot, 1, 1, 0, CardNumberEnum.Jack, CardSuitEnum.Spade); // J♠
     }
 
     static void SetCardsAttempt3()
@@ -216,13 +221,17 @@ class Program
             case CardSlotTypeEnum.PlayerCardSlot:
                 _cardGameController.Players[position].Cards[cardPosition] = cardSlot;
                 break;
+            case CardSlotTypeEnum.DeadCardSlot:
+                _cardGameController.DeadCardsSlots[position] = cardSlot;
+                break;
         }
     }
 
-    static void PrintCards(bool players = true, bool board = true)
+    static void PrintCards(bool players = true, bool board = true, bool dead = true)
     {
         if (players) PrintPlayersCards();
         if (board) PrintBoardCards();
+        if (dead) PrintDeadCards();
     }
 
     static void PrintPlayersCards()
@@ -238,6 +247,12 @@ class Program
     {
         Console.WriteLine("Board cards:");
         _cardGameController.BoardCardSlots.ForEach(cs => Console.WriteLine(cs.Card));
+    }
+
+    static void PrintDeadCards()
+    {
+        Console.WriteLine("Dead cards:");
+        _cardGameController.DeadCardsSlots.ForEach(cs => Console.WriteLine(cs.Card));
     }
 
     static void DisplayResults()

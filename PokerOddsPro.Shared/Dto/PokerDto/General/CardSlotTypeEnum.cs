@@ -3,6 +3,7 @@
     public enum CardSlotTypeEnum
     {
         BoardCardSlot,
-        PlayerCardSlot
+        PlayerCardSlot,
+        DeadCardSlot
     }
 }

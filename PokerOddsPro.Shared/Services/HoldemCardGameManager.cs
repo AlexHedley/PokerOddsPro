@@ -107,8 +107,9 @@ namespace PokerOddsPro.Shared.Services
                 var playersWithEnoughCards = Players.Where(x => x.HasAllCards).ToList();
                 var playerCards = playersWithEnoughCards.Select(p => p.Cards.Select(x => x.Card.CardInfo).ToList()).ToList();
                 var boardCards = BoardCardSlots.Where(x => x.Card != null).Select(x => x.Card.CardInfo).ToList();
+                var deadCards = DeadCardsSlots.Where(x => x.Card != null).Select(x => x.Card.CardInfo).ToList();
 
-                var oddsComputer = new IncrementalOddsCalculator(BoardDetails, playerCards, boardCards);
+                var oddsComputer = new IncrementalOddsCalculator(BoardDetails, playerCards, boardCards, deadCards);
 
                 if (currentCalculator != null)
                 {

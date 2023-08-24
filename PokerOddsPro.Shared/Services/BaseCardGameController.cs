@@ -20,6 +20,7 @@ namespace PokerOddsPro.Shared.Services
 
             AllCards = Helper.GetAllCards();
             BoardCardSlots = Enumerable.Range(0, numberOfBoardCards).Select(x => new CardSlot() { CardSlotType = CardSlotTypeEnum.BoardCardSlot }).ToList();
+            DeadCardsSlots = Enumerable.Range(0, numberOfPlayers*2).Select(x => new CardSlot() {}).ToList();
             Players = new List<PlayerController>();
             foreach (var _ in Enumerable.Range(0, numberOfPlayers))
             {
@@ -41,6 +42,7 @@ namespace PokerOddsPro.Shared.Services
         private List<Card> AllCards { get; set; }
         public List<CardSlot> BoardCardSlots { get; }
         public List<PlayerController> Players { get; }
+        public List<CardSlot> DeadCardsSlots { get; }
 
         public BaseBoardDetails BoardDetails { get; }
 

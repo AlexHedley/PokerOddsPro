@@ -23,6 +23,11 @@ namespace PokerOddsPro.Shared.Services
 
         private int _minimumBoardCards;
 
+        public async Task CalculateOdds()
+        {
+            await RecalculateOdds();
+        }
+
         internal override PlayerController CreateNewPlayer() => new PlayerController(2); 
 
         internal override CardSlot ComputeNextSelectedCard()
